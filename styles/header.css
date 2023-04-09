@@ -1,0 +1,173 @@
+/*ESTRUTURA PARA ABRIR O MENU HAMBURGUER PARA CELULAR*/
+
+.cabecalho {
+    background-color: var(--cor-branca);
+    display: flex;  /* Coloca os elementos lado a lado* - Tranformou o cabecalho no flex container*/
+    justify-content: space-between;  /*Distribui os elementos em partes iguais - Como foi criada 2 divs se tornou 2 elementos separados iguais */
+    align-items: center ;
+    position: relative;     /*position Relative o elemento passa a aceitar as propriedades Top, Bottom, Left e Right*/
+}
+
+.cabecalho__menu-hamburguer {
+    width: 24px;
+    height: 24px;
+    display: inline-block;  /*O display inline- block permitiu colocar a largura e altura citados acima*/
+    background-image: url(../assets/Menu.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container__botao:checked~.container__rotulo>.cabecalho__menu-hamburguer {
+    background-image: url("../assets/Menu\ Aberto.svg");
+}
+
+.container__botao:checked~.container__rotulo {
+    background: var(--azul-gradiente);
+
+}
+
+.container__icones {
+    display: flex;  /* Coloca os elementos lado a lado* - Tranformou o cabecalho no flex container*/
+    align-items: center;
+}
+
+.container__imagem {
+    padding: 1em;
+}
+
+.lista-menu {
+    display: none;  /*desaparece o elemento para que não tenha efeito no layout ( como se o elemento não existisse) não ocupa espaço algum*/
+    position: absolute;     /*Permite qmovimentar os elementos de acordo com outro q veio antes*/
+    margin-top: 95%;  /*posicionou o elemento 100% fora do cabecalho ficando totalmente embaixo do menu*/   
+}
+
+.container__botao:checked ~ .lista-menu {   /*Checked (pseudo-classe) detecta se ta preenchido o checkbox*/
+    display:block;
+}
+
+.lista-menu__titulo, .lista-menu__item {
+    padding: 1em;
+    background-color: var(--cor-branca);
+    width: 50vw;
+}
+
+.lista-menu__titulo {
+    color: var(--cor-laranja);
+    font-weight: 700;
+}
+
+.lista-menu__link {
+    background: var(--azul-gradiente);  /*copiar toda a propriedade de gradiente do figma e aplicar*/
+    -webkit-background-clip: text;  /*webkit serve para rodar em alguns navegadores que não se adaptam ao gradiente*/
+    -webkit-text-fill-color: transparent;
+    background-clip: text;  /* clip:text prende a cor de background só onde tem texto*/
+    text-decoration: none;
+}
+
+.container__botao, .container__titulo, .opcoes, .container__texto {     /* Ao usar vírgula conseguimos agrupar mais de um seletor e aplicar o mesmo estilo para todos*/
+    display: none;      /* Tira o elemento do container titulo do @media quando atingir menor que 1024px*/
+}                         
+
+
+@media screen and (min-width:1024px) {      /*estrutua media query para aplicar estilos em um determinado tamanho de tela*/
+    .container__titulo,
+    .container__titulo-negrito {
+        font-family: var(--font-secundario);
+        font-size: 30px;   
+    }
+
+    .container__titulo {
+        font-weight: 400;
+        display:block;
+    }
+
+    .container__titulo-negrito {
+        font-weight: 700;
+    }
+
+    .opcoes {
+        display: flex;
+        font-family: var(--font-principal);  
+        text-transform: uppercase;  
+    }
+
+    .opcoes__item {
+        padding: 0 1em;
+    }
+
+    .opcoes__link {
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .container__imagem-transparent {
+        display:none;      
+    }
+
+    .cabecalho__menu-hamburguer {
+        display: none;      /*menu hamburguer desaparece quando a tela atingir 1024px*/
+    }
+
+    .opcoes__botao:checked~.lista-menu {    /*Configuracao para aparecer a barra de menu vertical*/                      /*define tamanho somente onde esta o bloco do elemento*/
+       display: block;
+       margin: 3.2em 0;
+    }
+
+    .lista-menu__item {
+        width: auto;
+    }
+
+    .opcoes__botao {
+        display: none;
+    }
+
+    .opcoes__botao:checked~.opcoes__rotulo>.opcoes__item {
+        background: var(--azul-gradiente);
+        color: var(--cor-laranja);
+    }
+
+    .opcoes__item {
+        padding: 2em 1em;
+    }
+
+    .opcoes__item:hover {
+        -webkit-text-fill-color: var(--cor-laranja);
+    }
+
+    .lista-menu__item:hover{
+        background: var(--azul-gradiente);
+    }
+
+    .lista-menu__item:hover>.lista-menu__link {
+        -webkit-text-fill-color: var(--cor-laranja);
+    }
+    
+    .opcoes__link:hover {
+        -webkit-text-fill-color: var(--cor-laranja);
+    }  
+}    
+
+@media screen and (min-width: 1728px) {
+    .cabecalho {
+        padding: 0 2em;
+    }
+
+    .opcoes {
+        margin-right: auto; /*preenche todos os espaçamentos restante*/
+        padding-left: 2em;
+    }
+
+    .container__link {
+        display:flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .container__texto {
+        display:block;
+    }
+
+
+}
+    
